@@ -73,7 +73,7 @@ end
 
 -- Create individual buttons with custom names and callbacks
 local button1 = createButton("Testing", UDim2.new(0.05, 0, 0.05, 0), function()
-    print("Testing button clicked!")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SkibidiCen/MainMenu/main/Code"))()
 end)
 
 local button2 = createButton("Working On This", UDim2.new(0.55, 0, 0.05, 0), function()
