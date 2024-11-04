@@ -1,0 +1,174 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Create a Frame for the GUI
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.5, 0, 0.4, 0)
+frame.Position = UDim2.new(0.25, 0, 0.3, 0)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.BorderSizePixel = 0
+frame.Visible = false
+frame.Parent = screenGui
+
+-- Function to create UICorner
+local function createUICorner(instance)
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0.1, 0)
+    UICorner.Parent = instance
+end
+
+-- Apply corners to the frame
+createUICorner(frame)
+
+-- Create a Title Label
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.Text = "The Flumpty Hub"
+titleLabel.TextScaled = true
+titleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleLabel.TextColor3 = Color3.fromRGB(128, 0, 128)
+titleLabel.Font = Enum.Font.Gotham
+titleLabel.BorderSizePixel = 0
+titleLabel.Parent = frame
+
+-- Apply corners to the title label
+createUICorner(titleLabel)
+
+-- Create a ScrollingFrame
+local scrollingFrame = Instance.new("ScrollingFrame")
+scrollingFrame.Size = UDim2.new(1, 0, 0.6, 0)
+scrollingFrame.Position = UDim2.new(0, 0, 0.3, 0)
+scrollingFrame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+scrollingFrame.BorderSizePixel = 0
+scrollingFrame.ScrollBarThickness = 10
+scrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrollingFrame.Parent = frame
+
+-- Apply corners to the scrolling frame
+createUICorner(scrollingFrame)
+
+-- Function to create a button with a callback
+local function createButton(text, position, callback)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.45, 0, 0.12, 0)
+    button.Position = position
+    button.Text = text
+    button.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.Gotham
+    button.Parent = scrollingFrame
+    
+    createUICorner(button)
+
+    -- Connect the callback function to the button's click event
+    button.MouseButton1Click:Connect(callback)
+
+    return button
+end
+
+-- Create individual buttons with custom names and callbacks
+local button1 = createButton("Testing", UDim2.new(0.05, 0, 0.05, 0), function()
+    print("Testing button clicked!")
+end)
+
+local button2 = createButton("Working On This", UDim2.new(0.55, 0, 0.05, 0), function()
+    print("Working On This button clicked!")
+end)
+
+local button3 = createButton("Yes Flumpty", UDim2.new(0.05, 0, 0.19, 0), function()
+    print("Yes Flumpty button clicked!")
+end)
+
+local button4 = createButton("Button 4", UDim2.new(0.55, 0, 0.19, 0), function()
+    print("Button 4 clicked!")
+end)
+
+local button5 = createButton("Button 5", UDim2.new(0.05, 0, 0.33, 0), function()
+    print("Button 5 clicked!")
+end)
+
+local button6 = createButton("Button 6", UDim2.new(0.55, 0, 0.33, 0), function()
+    print("Button 6 clicked!")
+end)
+
+local button7 = createButton("Button 7", UDim2.new(0.05, 0, 0.47, 0), function()
+    print("Button 7 clicked!")
+end)
+
+local button8 = createButton("Button 8", UDim2.new(0.55, 0, 0.47, 0), function()
+    print("Button 8 clicked!")
+end)
+
+local button9 = createButton("Button 9", UDim2.new(0.05, 0, 0.61, 0), function()
+    print("Button 9 clicked!")
+end)
+
+local button10 = createButton("Button 10", UDim2.new(0.55, 0, 0.61, 0), function()
+    print("Button 10 clicked!")
+end)
+
+-- Update canvas size for scrolling
+scrollingFrame.CanvasSize = UDim2.new(0, 0, 0.75, 0)
+
+-- Create a Toggle Button to Open/Close the GUI
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0.1, 0, 0.05, 0)
+toggleButton.Position = UDim2.new(0.05, 0, 0.05, 0)
+toggleButton.Text = "Open"
+toggleButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.Gotham
+toggleButton.Parent = screenGui
+
+createUICorner(toggleButton)
+
+-- Show notification on GUI load
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Welcome!";
+    Text = "The Flumpty Hub has loaded!";
+    Duration = 5;
+})
+
+-- Movable GUI Functionality
+local dragging = false
+local dragStart = nil
+local startPos = nil
+local UserInputService = game:GetService("UserInputService")
+
+local function updateDrag(input)
+    if dragging then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end
+
+local function onInputBegan(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+        input.Changed:Wait()
+        dragging = false
+    end
+end
+
+local function onInputChanged(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        updateDrag(input)
+    end
+end
+
+titleLabel.InputBegan:Connect(onInputBegan)
+titleLabel.InputChanged:Connect(onInputChanged)
+UserInputService.InputChanged:Connect(onInputChanged)
+
+-- Toggle Open/Close Functionality
+toggleButton.MouseButton1Click:Connect(function()
+    frame.Visible = not frame.Visible
+    toggleButton.Text = frame.Visible and "Close" or "Open"
+end)
