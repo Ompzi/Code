@@ -55,7 +55,7 @@ createUICorner(scrollingFrame)
 -- Function to create a button
 local function createButton(text, position)
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0.45, 0, 0.12, 0) -- Adjusted for larger buttons
+    button.Size = UDim2.new(0.45, 0, 0.12, 0)
     button.Position = position
     button.Text = text
     button.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
@@ -94,6 +94,13 @@ toggleButton.Font = Enum.Font.Gotham
 toggleButton.Parent = screenGui
 
 createUICorner(toggleButton)
+
+-- Show notification on GUI load
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Welcome!";
+    Text = "The Flumpty Hub has loaded!";
+    Duration = 5;
+})
 
 -- Movable GUI Functionality
 local dragging = false
