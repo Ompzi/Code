@@ -9,7 +9,7 @@ screenGui.Parent = player:WaitForChild("PlayerGui")
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0.5, 0, 0.4, 0)
 frame.Position = UDim2.new(0.25, 0, 0.3, 0)
-frame.BackgroundColor3 = Color3.fromRGB(192, 192, 192) -- Silver color
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.BorderSizePixel = 0
 frame.Visible = false
 frame.Parent = screenGui
@@ -28,11 +28,11 @@ createUICorner(frame)
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
 titleLabel.Position = UDim2.new(0, 0, 0, 0)
-titleLabel.Text = "Flumpty Hub"
+titleLabel.Text = "The Flumpty Hub"
 titleLabel.TextScaled = true
-titleLabel.BackgroundColor3 = Color3.fromRGB(192, 192, 192) -- Match frame color
-titleLabel.TextColor3 = Color3.fromRGB(0, 255, 0) -- Neon green color
-titleLabel.Font = Enum.Font.Garamond -- Bubbly style font
+titleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleLabel.TextColor3 = Color3.fromRGB(128, 0, 128)
+titleLabel.Font = Enum.Font.Gotham
 titleLabel.BorderSizePixel = 0
 titleLabel.Parent = frame
 
@@ -43,7 +43,7 @@ createUICorner(titleLabel)
 local scrollingFrame = Instance.new("ScrollingFrame")
 scrollingFrame.Size = UDim2.new(1, 0, 0.6, 0)
 scrollingFrame.Position = UDim2.new(0, 0, 0.3, 0)
-scrollingFrame.BackgroundColor3 = Color3.fromRGB(192, 192, 192) -- Silver color
+scrollingFrame.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 scrollingFrame.BorderSizePixel = 0
 scrollingFrame.ScrollBarThickness = 10
 scrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -58,9 +58,9 @@ local function createButton(text, position)
     button.Size = UDim2.new(0.45, 0, 0.12, 0) -- Adjusted for larger buttons
     button.Position = position
     button.Text = text
-    button.BackgroundColor3 = Color3.fromRGB(192, 192, 192) -- Silver color
-    button.TextColor3 = Color3.fromRGB(0, 255, 0) -- Neon green color
-    button.Font = Enum.Font.Garamond -- Bubbly style font
+    button.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.Gotham
     button.Parent = scrollingFrame
     
     createUICorner(button)
@@ -69,9 +69,9 @@ local function createButton(text, position)
 end
 
 -- Create individual buttons with custom names
-local button1 = createButton("Button 1", UDim2.new(0.05, 0, 0.05, 0))
-local button2 = createButton("Button 2", UDim2.new(0.55, 0, 0.05, 0))
-local button3 = createButton("Button 3", UDim2.new(0.05, 0, 0.19, 0))
+local button1 = createButton("Testing", UDim2.new(0.05, 0, 0.05, 0))
+local button2 = createButton("Working On This", UDim2.new(0.55, 0, 0.05, 0))
+local button3 = createButton("Yes Flumpty", UDim2.new(0.05, 0, 0.19, 0))
 local button4 = createButton("Button 4", UDim2.new(0.55, 0, 0.19, 0))
 local button5 = createButton("Button 5", UDim2.new(0.05, 0, 0.33, 0))
 local button6 = createButton("Button 6", UDim2.new(0.55, 0, 0.33, 0))
@@ -88,16 +88,15 @@ local toggleButton = Instance.new("TextButton")
 toggleButton.Size = UDim2.new(0.1, 0, 0.05, 0)
 toggleButton.Position = UDim2.new(0.05, 0, 0.05, 0)
 toggleButton.Text = "Open"
-toggleButton.BackgroundColor3 = Color3.fromRGB(192, 192, 192) -- Silver color
-toggleButton.TextColor3 = Color3.fromRGB(0, 255, 0) -- Neon green color
-toggleButton.Font = Enum.Font.Garamond -- Bubbly style font
+toggleButton.BackgroundColor3 = Color3.fromRGB(128, 0, 128)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.Gotham
 toggleButton.Parent = screenGui
 
--- Apply corners to the toggle button
 createUICorner(toggleButton)
 
 -- Movable GUI Functionality
-local dragging = true
+local dragging = false
 local dragStart = nil
 local startPos = nil
 local UserInputService = game:GetService("UserInputService")
